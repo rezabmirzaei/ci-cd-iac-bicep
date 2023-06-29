@@ -24,7 +24,9 @@ DOCKER_IMAGE = "<DOCKE_IMAGE_TO_DEPLOY>"
 ```
 You can find your __<SPN_APPID_VALUE>__ in the Azure portal, under _Azure Active Directory_ > _App registrations_ > _Application (client) ID_.
 
-The __<SPN_CLIENT_SECRET_VALUE>__ is the __password__ generated for the service principle. It is only visible on the output after creation. If you have lost it, you will need to [reset it](https://learn.microsoft.com/en-us/cli/azure/ad/sp/credential?view=azure-cli-latest#az-ad-sp-credential-reset). 
+The __<SPN_CLIENT_SECRET_VALUE>__ is the __password__ generated for the service principle. It is only visible on the output after creation. If you have lost it, you will need to [reset it](https://learn.microsoft.com/en-us/cli/azure/ad/sp/credential?view=azure-cli-latest#az-ad-sp-credential-reset).
+
+The __<DOCKE_IMAGE_TO_DEPLOY>__ must be public and the bicep template will deploy the _latest_ tag.
 
 ## Infrastructure
 
