@@ -37,3 +37,6 @@ If you are happy with the result of the above command, execute it by changing ``
 * ``az deployment sub create -l northeurope --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
 
 This will create an App Service Plan, containing one App Service, with continuous deployment active and the docker image you specified deployed.
+
+When done, you can delete the resources created as such:
+* ``az group delete --name ${env:RG_NAME}-xxx`` <- You need to get the actual name (the bicep-template adds 3 random letters to the end of the resource group name).

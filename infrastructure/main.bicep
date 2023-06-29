@@ -9,6 +9,7 @@ param dockerImage string
 var randomString = substring(uniqueString(subscription().id), 0, 3)
 
 param resourceTags object = {
+  // TODO Should not hardcode!
   Owner: 'reza.b.mirzaei@outlook.com'
   Env: 'test'
 }
