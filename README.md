@@ -31,10 +31,13 @@ The __<DOCKE_IMAGE_TO_DEPLOY>__ must be public and the bicep template will deplo
 ## Infrastructure
 
 Open a terminal and navigate to the ``infrastructure`` folder of this project. For a dry-run (see what will be done, but not actually do it):
-* ``az deployment sub what-if -l northeurope --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
+* ``az deployment sub what-if -l ${env:AZURE_REGION} --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
 
 If you are happy with the result of the above command, execute it by changing ``what-if`` with ``create``:
-* ``az deployment sub create -l northeurope --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
+* ``az deployment sub create -l ${env:AZURE_REGION} --name=<SOME_RANDOM_NAME> --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
+
+Optional: add ``--name=<SOME_RANDOM_NAME>`` to the ``az deployment`` command to avoid naming/location conflicts later.
+
 
 This will create an App Service Plan, containing one App Service, with continuous deployment active and the docker image you specified deployed.
 
