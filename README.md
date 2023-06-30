@@ -38,7 +38,7 @@ Open a terminal and navigate to the ``infrastructure`` folder of this project. F
 If you are happy with the result of the above command, execute it by changing ``what-if`` with ``create``:
 * ``az deployment sub create -l ${env:AZURE_REGION} --name=<SOME_RANDOM_NAME> --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
 
-Heads up! ``--name=<SOME_RANDOM_NAME>``: Swap <SOME_RANDOM_NAME> with a name given for your run of the deployment. This is the name given to the actual process in Azure for this particular deployment. Useful to avoid naming/location conflicts later.
+__Heads up!__ ``--name=<SOME_RANDOM_NAME>``: Swap <SOME_RANDOM_NAME> with a name given for your run of the deployment. This is the name given to the actual process in Azure for this particular deployment. Useful to avoid naming/location conflicts later.
 
 This will create an App Service Plan, containing one App Service, with continuous deployment active and the docker image you specified deployed.
 
