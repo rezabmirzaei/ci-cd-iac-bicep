@@ -24,20 +24,21 @@ DOCKER_IMAGE = "<DOCKE_IMAGE_TO_DEPLOY>"
 ```
 You can find your __<SPN_APPID_VALUE>__ in the Azure portal, under _Azure Active Directory_ > _App registrations_ > _Application (client) ID_.
 
-The __<SPN_CLIENT_SECRET_VALUE>__ is the __password__ generated for the service principle. It is only visible on the output after creation. If you have lost it, you will need to [reset it](https://learn.microsoft.com/en-us/cli/azure/ad/sp/credential?view=azure-cli-latest#az-ad-sp-credential-reset).
+__<SPN_CLIENT_SECRET_VALUE>__ is the __password__ generated for the service principle. It is only visible on the output after creation. If you have lost it, you will need to [reset it](https://learn.microsoft.com/en-us/cli/azure/ad/sp/credential?view=azure-cli-latest#az-ad-sp-credential-reset).
 
-The __<DOCKE_IMAGE_TO_DEPLOY>__ must be public and the bicep template will deploy the _latest_ tag.
+__<DOCKER_USR>__ is the username of the docker account you want to pull an image from (usually your own Docker username).
+
+__<DOCKE_IMAGE_TO_DEPLOY>__ is the image you want to deploy and must be public. The bicep template will deploy the _latest_ tag.
 
 ## Infrastructure
 
 Open a terminal and navigate to the ``infrastructure`` folder of this project. For a dry-run (see what will be done, but not actually do it):
-* ``az deployment sub what-if -l ${env:AZURE_REGION} --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
+* ``az deployment sub what-if -l ${env:AZURE_REGION} --name=<SOME_RANDOM_NAME> --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
 
 If you are happy with the result of the above command, execute it by changing ``what-if`` with ``create``:
 * ``az deployment sub create -l ${env:AZURE_REGION} --name=<SOME_RANDOM_NAME> --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
 
-Optional: add ``--name=<SOME_RANDOM_NAME>`` to the ``az deployment`` command to avoid naming/location conflicts later.
-
+Heads up! ``--name=<SOME_RANDOM_NAME>``: Swap <SOME_RANDOM_NAME> with a name given for your run of the deployment. This is the name given to the actual process in Azure for this particular deployment. Useful to avoid naming/location conflicts later.
 
 This will create an App Service Plan, containing one App Service, with continuous deployment active and the docker image you specified deployed.
 
