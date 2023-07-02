@@ -42,5 +42,14 @@ __Heads up!__ ``--name=<SOME_RANDOM_NAME>``: Swap <SOME_RANDOM_NAME> with a name
 
 This will create an App Service Plan, containing one App Service, with continuous deployment active and the docker image you specified deployed.
 
-When done, you can delete the resources created as such:
+## CI/CD Pipeline
+
+[TODO]
+
+## Cleanup
+
+When done, make sure to delete all the resources:
 * ``az group delete --name ${env:RG_NAME}-xxx`` <- You need to get the actual name (the bicep-template adds 3 random letters to the end of the resource group name).
+
+__Very important to avoid unwanted cost.__
+
